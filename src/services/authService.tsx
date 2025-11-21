@@ -1,0 +1,13 @@
+import { wait } from '../utils/wait';
+
+export async function verifyOtp(otp:string) {
+    await wait(1500);
+
+    return { ok: otp.length === 4, otp };
+}
+
+export async function resendOTP() {
+    await wait(600);
+    return {ok: true};
+    
+}
