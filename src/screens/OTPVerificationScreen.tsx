@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import OTPInput from '../components/OTPInput/OTPInput';
 import useTimer from '../hooks/useTimer';
-import { verifyOtp, resendOTP } from '../services/authService';
+import { verifyOtp, resendOtp } from '../services/authService';
 
 const OTPVerificationScreen = (): React.ReactElement => {
   const [otp, setOtp] = useState(['', '', '', '']);
@@ -28,7 +28,6 @@ const OTPVerificationScreen = (): React.ReactElement => {
     setLoading(true);
     try {
       const res = await verifyOtp(fullOtp);
-      console.log('Entered OTP:', fullOtp);
       if (res.ok) Alert.alert('Success', 'OTP verified (mock)');
       else Alert.alert('Failed', 'Invalid OTP (mock)');
     } catch {
@@ -42,10 +41,10 @@ const OTPVerificationScreen = (): React.ReactElement => {
     if (timeLeft > 0) return;
     setResending(true);
     try {
-      const r = await resendOTP();
+      const r = await resendOtp();
       if (r.ok) {
         reset();
-        setOtp(['', '', '', '']);
+        setOtp(['', '', '', '']); 
       }
     } finally {
       setResending(false);
