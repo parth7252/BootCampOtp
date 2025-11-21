@@ -47,15 +47,16 @@ const OTPInput = ({ value, onChange }: Props): JSX.Element => {
         <TextInput
           key={i}
           ref={(ref) => (inputRef.current[i] = ref)}
-          style={styles.box}
-          keyboardType={Platform.OS === 'ios' ? 'number-pad' : 'numeric'}
-          maxLength={4}
+          style={[styles.box, { color: '#000' }]}
+          keyboardType={Platform.OS === 'android' ? 'numeric' : 'number-pad'} 
+          maxLength={1} 
           value={val}
           onChangeText={(t) => handleChange(t, i)}
           onKeyPress={(e) => handleKeyPress(e, i)}
           accessible
           accessibilityLabel={`OTP digit ${i + 1}`}
           returnKeyType="done"
+          selectionColor="#111" 
         />
       ))}
     </View>
